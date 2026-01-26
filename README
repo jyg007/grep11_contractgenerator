@@ -1,0 +1,4 @@
+1- Generate grep11server server/client and store it in srv.  Edit server.cnf if needed.
+2- Edit adapter param in srv/grep11server1.yaml and srv/grep11server2.yaml
+3- Run ./create_contract_shell.sh
+4- Define vm domain (grep11/domain.xml) and install the contract.  Edit HSM uuid if necessaary.  If two HSM, specify the two uuids.
