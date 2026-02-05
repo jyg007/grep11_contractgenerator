@@ -14,7 +14,7 @@ touch vendor-data
 echo "local-hostname: grep11" > meta-data
 #cloud-localds cloud-init -V vendor-data user-data meta-data
 
-genisoimage -output /var/lib/libvirt/images/grep11-3-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data network-config
+genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data network-config
 
 #cp cloud-init /var/lib/libvirt/images/grep11-2-cloudinit
-qemu-img create -f qcow2 /var/lib/libvirt/images/grep11-3-overlay.qcow2 10G
+qemu-img create -f qcow2 /var/lib/libvirt/images/grep11-overlay.qcow2 10G
