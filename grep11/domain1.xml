@@ -38,12 +38,6 @@
       <driver name='vhost' iommu='on'/>
       <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0001'/>
     </interface>
-    <interface type='bridge'>
-      <source bridge='br-control34' />
-      <model type='virtio'/>
-      <driver name='vhost' iommu='on'/>
-      <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0005'/>
-    </interface>
     <hostdev mode='subsystem'  type='mdev' managed='no' model='vfio-ap'>
       <source>
           <address uuid='977152a7-1abc-43d6-bf23-01b62c73f527' />
