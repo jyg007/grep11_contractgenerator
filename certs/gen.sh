@@ -16,7 +16,7 @@
 # CA
 openssl genrsa -out grep11ca-key.pem 4096
 openssl req -config ca.cnf -key grep11ca-key.pem -new -out grep11ca-req.csr
-openssl x509 -signkey grep11ca-key.pem -in grep11ca-req.csr -req -days 7300 -out grep11ca.pem
+openssl x509 -signkey grep11ca-key.pem -extfile ca.cnf -extensions v3_ca -in grep11ca-req.csr -req -days 7300 -out grep11ca.pem
 
 # Server
 #openssl req -config server.cnf -newkey rsa:4096 -nodes -keyout grep11server-key.pem -new -extensions grep11server -out grep11server.csr

@@ -8,3 +8,10 @@ distinguished_name = dn
 [ dn ]
 O = HPS
 CN = grep11.local
+
+[ v3_ca ]
+basicConstraints = critical, CA:TRUE
+keyUsage = critical, keyCertSign, cRLSign
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+
