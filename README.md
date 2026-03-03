@@ -110,7 +110,7 @@ virsh define domain1.xml
 
 5. Install your HPVS contract (`user-data` file)
 
-If using `domain1.xml`,
+If using `domain1.xml`
     1. Edit the `create-cloudinit.sh` script and the following command 
 
 from
