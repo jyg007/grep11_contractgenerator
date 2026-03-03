@@ -105,12 +105,9 @@ from
 to
 `genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data`
 
-4.2 Fix the IP address of your grep11 by editing the default definition by fixing the mac address (check `virsh dumpxml grep11`) and the IP .  For example:
+4.2 Fix the IP address of your grep11 by editing the default definition by fixing the mac address (as defined in `domain1.xml`) and an IP like 192.168.122.100 in this example which is part of 192.168.122.*/24 default kvm network.  For example:
 
 ```
-$  virsh dumpxml grep11 | grep "mac address"
-      <mac address='*52:54:00:a0:88:6b*'/>
-
 $ virsh net-edit default
 
   <ip address='192.168.122.1' netmask='255.255.255.0'>
@@ -118,7 +115,7 @@ $ virsh net-edit default
       <range start='192.168.122.2' end='192.168.122.254'>
         <lease expiry='0'/>
       </range>
-      <host mac='*52:54:00:a0:88:6b*' name='grep11' ip='192.168.122.76'/>
+      <host mac='52:54:00:1e:81:09' name='grep11' ip='192.168.122.100'/>
     </dhcp>
   </ip>
 ```
