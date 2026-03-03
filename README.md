@@ -110,16 +110,27 @@ virsh define domain1.xml
 
 5. Install your HPVS contract (`user-data` file)
 
-If using `domain1.xml`
-    1. Edit the `create-cloudinit.sh` script and the following command 
+   If using `domain1.xml`:
 
-from
-`genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data network-config`
+   1. Edit the `create-cloudinit.sh` script and change the following command  
 
-to
-`genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data`
+      from
 
-    2. Fix the IP address of your grep11 by editing the default definition by fixing the mac address (as defined in `domain1.xml`) and an IP like `192.168.122.100` in this example which is part of `192.168.122.*/24` default kvm network.  For example:
+      ```bash
+      genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data network-config
+      ```
+
+      to
+
+      ```bash
+      genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data
+      ```
+
+   2. Fix the IP address of your grep11 by editing the default definition:
+      - Set the MAC address as defined in `domain1.xml`
+      - Set a fixed IP such as `192.168.122.100` (part of the default KVM network `192.168.122.0/24`)
+
+      For example:
 
 ```
 $ virsh net-edit default
