@@ -1,9 +1,14 @@
-1- Generate grep11server server/client and store it in srv.  Edit server.cnf if needed.
-2- Edit adapter param in srv/grep11server1.yaml and srv/grep11server2.yaml
-3- Run ./create_contract_shell.sh
-4- Define vm domain (grep11/domain.xml) and install the contract.  Edit HSM uuid if necessaary.  If two HSM, specify the two uuids.
+## mTLS certs used for grep11 connection
 
-
+1. You can keep existing files but in `certs` directory the `gen.sh` script can be used to recreate CA, client, server certs for grep11. Edit server.cnf if needed.
+2. Remove all private keys after the generation.
+3. Edit your client `/etc/hosts` if you wanted to test the connection locally and add:
+```
+192.168.96.21 grep11.svc.net             # [OSO config for tenant 0 using hipersocket]
+or 192.168.122.100 grep11.svc.net        # [KVM default network]
+```
+4. `https://github.com/jyg007/ep11go` includes numerous sample to test the connection
+   
 ## Building `terraforms.tfvars`
 
 ### Q1:  Which registry are you using ?
@@ -105,7 +110,7 @@ from
 to
 `genisoimage -output /var/lib/libvirt/images/grep11-cloudinit -volid cidata -joliet -rock vendor-data user-data meta-data`
 
-4.2 Fix the IP address of your grep11 by editing the default definition by fixing the mac address (as defined in `domain1.xml`) and an IP like 192.168.122.100 in this example which is part of 192.168.122.*/24 default kvm network.  For example:
+4.2 Fix the IP address of your grep11 by editing the default definition by fixing the mac address (as defined in `domain1.xml`) and an IP like `192.168.122.100` in this example which is part of `192.168.122.*/24` default kvm network.  For example:
 
 ```
 $ virsh net-edit default
