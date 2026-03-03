@@ -1,5 +1,7 @@
 ## mTLS certs used for grep11 connection
 
+The HPVS grep11 vm will use the server certs.  This step is optional as the current key and cert can be kept for the testing in an initial setup.  CA, client and server keys and certificates used for grep11 authentication are stored in the `certs` directory. 
+
 1. You can keep existing files but in `certs` directory the `gen.sh` script can be used to recreate CA, client, server certs for grep11. Edit server.cnf if needed.
 2. Do not leave private keys in this directory when your setup has been completed
 3. Edit your client `/etc/hosts` if you wanted to test the connection locally and add:
@@ -79,7 +81,14 @@ Your contract can now be generated using `create_contract_shell.sh` script.  It 
 
 In the `grep11` directory you will find all you need to create your grep11 HPVS VM.
 
-1. Activate the passthough mode on your LPAR.  Modify the adapter number and domain number in the `activate_passthrough.sh` script and execute it.  The `lszcrypt -V` should indicate you domain is managed by the vfio_ap driver:
+1. Modify the adapter number and domain number in the `activate_passthrough.sh` script:
+```
+CARD1=0x03
+CARD2=0x02
+DOMAIN1=0x11
+```
+
+2. Activate the passthough mode on your LPAR by executing the `activate_passthrough.sh` script.  The `lszcrypt -V` should indicate you domain is managed by the vfio_ap driver:
 
 ```
 $ activate_passthrough.sh
@@ -89,19 +98,19 @@ CARD.DOM TYPE  MODE        STATUS     REQUESTS  PENDING HWTYPE QDEPTH FUNCTIONS 
 03       CEX8P EP11-Coproc online            0        0     14     08 -----XN-F- cex4card   
 03.0011  CEX8P EP11-Coproc in use            -        -     14     08 -----XN-F- vfio_ap
 ```
-2. Select the hpvs domain definition that fits your network:
+3. Select the hpvs domain definition that fits your network:
 
 `domain.xml` is to be used with OSO and hipersocket
 `domain1.xml` is to be used for a standalone grep11 service listening via a NAT adapter on the KVM default network.
 
-3. Create your domain:
+4. Create your HPVS VM (KVM guest):
 ```
 virsh define domain1.xml
 ```
 
-4. Install your HPVS contract (`user-data` file)
+5. Install your HPVS contract (`user-data` file)
 
-If using domain1.xml, 
+If using `domain1.xml`, 
 4.1 Edit the `create-cloudinit.sh` script and the following command 
 
 from
