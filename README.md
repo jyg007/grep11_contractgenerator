@@ -47,7 +47,7 @@ SYSLOG_CLIENT_KEY
 ### Q4: What about your HSM ?
 1. Which domains are you using ? 
 2. Set value for `HSMDOMAIN1` and `HSMDOMAIN2`
-3. Have your retrive your Host Key file ?
+3. Have your retrieved your Host Key file ?
 4. Set value for `MACHINE1_HKD_B24` and `MACHINE2_HKD_B24` as well as serial number `MACHINE1` and `MACHINE2`.  
 you can use the `getHKD.sh` to help:
 
@@ -56,3 +56,20 @@ $ getHKD.sh
 Login at https://www.ibm.com/support/resourcelink/ and then download:
 https://www.ibm.com/support/resourcelink/api/content/raw/hkd-public/HKD-3931-028A3B8.crt
 ```
+5. Retrieve your HSM domain master key verification pattern.  You can use `ep11info -D` for this.  And set the value for `MKVP` paramater.
+```
+# ep11info -D
+ module-nr domain-nr imprinted      sign. thr.     revoke thr.      compliance                                                                wrapping key
+==========================================================================================================================================================
+         3        19       YES               1               1        00000001    50D94C73 FBF3137D 2239F132 191026A5 CD166583 EE557ECA CBB701E3 00000000
+         4        19       YES               1               1        00000001    50D94C73 FBF3137D 2239F132 191026A5 CD166583 EE557ECA CBB701E3 00000000
+```
+6. Generate a random ep11 passtrhough key for your grep11 and set value for `SECRET_B24`  [ *SENSITIVE* PARAMETER, make sure the value is not publicly known ]
+```
+openssl rand -base64 32
+```
+```
+
+Your contract can now be generated using `create_contract_shell.sh` script.  It will be in grep11 directory.
+
+## GREP11 HPVS VM
