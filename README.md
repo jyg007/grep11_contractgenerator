@@ -1,7 +1,7 @@
 ## mTLS certs used for grep11 connection
 
 1. You can keep existing files but in `certs` directory the `gen.sh` script can be used to recreate CA, client, server certs for grep11. Edit server.cnf if needed.
-2. Remove all private keys after the generation.
+2. Do not leave private keys in this directory when your setup has been completed
 3. Edit your client `/etc/hosts` if you wanted to test the connection locally and add:
 ```
 192.168.96.21 grep11.svc.net             # [OSO config for tenant 0 using hipersocket]
