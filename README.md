@@ -51,6 +51,14 @@ SYSLOG_CLIENT_KEY
 3. Specify the value as done in `terraforms.tfvars.sample` for `HPCR_CERT` parameter
 4. Copy the `images/ibm-hyper-protect-container-runtime-X.X.X.qcow2` as `/var/lib/libvirt/images/hpcr` in your LPAR
 
+💡 **Tip:** you can version your file vis hpvs version like this `/var/lib/libvirt/images/hpcr.2.2.2` for easy hpvs runtime update do not forget to update your `domain.xml` or `domain_oso.xml` accordingly as `/var/lib/libvirt/hpcr` is the default file name:
+```
+     <backingStore type='file'>
+        <format type='qcow2'/>
+        <source file='/var/lib/libvirt/images/hpcr'/>
+     </backingStore>
+```
+
 ### Q4: What about your HSM ?
 1. Which domains are you using ? 
 2. Set value for `HSMDOMAIN1` and `HSMDOMAIN2`
