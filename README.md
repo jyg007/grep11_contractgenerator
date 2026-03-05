@@ -2,11 +2,11 @@
 
 ## Installation Steps
 
-1. Grep11 are accessed via mTLS authentication.  Existing ca, pem, key can be reused.  See 1. if you want to create yours
+1. Grep11 is accessed via mTLS authentication.  Existing ca, pem, key files can be reused as-is for initial testing.  See section 1 otherwise if you want to create yours.
 
-2. Generate contract file.  See 2 
+2. Generate contract file.  See section 2 
 
-3. Define the HPVS KVM domain guest and install the hpvs contract.  See 3
+3. Define the HPVS KVM domain guest and install the hpvs contract.  See section 3
 
 
 ## 1) mTLS certs used for grep11 connection
