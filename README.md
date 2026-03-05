@@ -1,4 +1,15 @@
-## mTLS certs used for grep11 connection
+# GREP11 standalone service installation as Hyper Protect Virtual Server
+
+## Installation Steps
+
+1. Grep11 are accessed via mTLS authentication.  Existing ca, pem, key can be reused.  See 1. if you want to create yours
+
+2. Generate contract file.  See 2 
+
+3. Define the HPVS KVM domain guest and install the hpvs contract.  See 3
+
+
+## 1) mTLS certs used for grep11 connection
 
 The HPVS grep11 vm will use the server certs.  This step is optional as the current key and cert can be kept for the testing in an initial setup.  CA, client and server keys and certificates used for grep11 authentication are stored in the `certs` directory. 
 
@@ -11,7 +22,9 @@ or 192.168.122.100 grep11.svc.net        # [KVM default network]
 ```
 4. `https://github.com/jyg007/ep11go` includes numerous sample to test the connection
    
-## Building `terraforms.tfvars`
+## 2) Building `terraforms.tfvars`
+
+The hpvs contract is created using the `./create_contract_shell.sh` script after your set all paramters in `terraforms.tfvars` contract parameter file.
 
 ### Q1:  Which registry are you using ?
 
@@ -85,7 +98,7 @@ openssl rand -base64 32
 ```
 Your contract can now be generated using `create_contract_shell.sh` script.  It will be in grep11 directory.
 
-## GREP11 HPVS VM
+## 3) GREP11 HPVS VM
 
 In the `grep11` directory you will find all you need to create your grep11 HPVS VM.
 
