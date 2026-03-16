@@ -16,7 +16,7 @@ cp -rf ./cfg ./docker-compose
 cp -rf ./nginx ./docker-compose
 #terraform apply -auto-approve
 
-sed -e 's#${tpl.imagegrep11}#'$IMAGEGREP11"#" -e 's#${tpl.imagenginx}#'$IMAGENGINX"#" grep11-c16.yml.tftpl > ./docker-compose/docker-compose.yml
+sed -e 's#${tpl.imagegrep11}#'$IMAGEGREP11"#" -e 's#${tpl.imagenginx}#'$IMAGENGINX"#" grep11-c16.yml.tftpl > ./docker-compose/play.yml
 
 sed -e 's/<<-EOT/$(cat <<-EOT /' -e 's/^EOT/EOT\n)/' ./terraform.tfvars > ./o.$$ 
 for i in IMAGE SYSLOG REGISTRY MACHINE2 MACHINE2_DESCRIPTION MACHINE2_HKD_B24 HSMDOMAIN2 MACHINE1 MACHINE1_DESCRIPTION MACHINE1_HKD_B24 HSMDOMAIN1 SECRET_B24 MKVP HELLO HPCR_CERT
@@ -27,8 +27,8 @@ done
 . ./o.$$
 rm ./o.$$
 
-sed -e "s/HSMDOMAIN/$HSMDOMAIN1/" grep11server.tpl > srv/grep11server1.yaml
-sed -e "s/HSMDOMAIN/$HSMDOMAIN2/" grep11server.tpl > srv/grep11server2.yaml
+sed -e "s/HSMDOMAIN/$HSMDOMAIN1/" -e "s/EP11SERVERPORT/10876/" grep11server.tpl > srv/grep11server1.yaml
+sed -e "s/HSMDOMAIN/$HSMDOMAIN2/" -e "s/EP11SERVERPORT/11876/" grep11server.tpl > srv/grep11server2.yaml
 cp -rf ./srv ./docker-compose
 
 export COMPOSE=`tar -cz -C docker-compose/ . | base64 -w0`
