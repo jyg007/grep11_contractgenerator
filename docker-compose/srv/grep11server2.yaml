@@ -17,7 +17,7 @@ ep11crypto:
   enabled: true
   connection:
     address: 0.0.0.0
-    port: 9876
+    port: 11876
 
     # Secure connection TLS options
     tls:
@@ -47,4 +47,4 @@ ep11crypto:
 
   # Comma-separated list of card.domain tuples. card and domain are hex numbers
   # i.e. "01.a9,c.10" correspods to 169th domain on first card and 16th domain on 12th card
-  domain: ""
+  domain: "03.0011"

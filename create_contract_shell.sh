@@ -48,13 +48,13 @@ PASSWORD=`openssl rand -base64 32`
 ENCRYPTED_PASSWORD="$(echo -n "$PASSWORD" | base64 -d | openssl pkeyutl -encrypt -pubin -inkey <(openssl x509 -in $CONTRACT_KEY -pubkey -noout) |  base64 -w0)"
 #ENCRYPTED_PASSWORD="$(echo -n "$PASSWORD" | base64 -d | openssl rsautl -encrypt -inkey $CONTRACT_KEY -certin | base64 -w0 )"
 ENCRYPTED_WORKLOAD="$(echo -n "$PASSWORD" | base64 -d | openssl enc -aes-256-cbc -pbkdf2 -pass stdin -in "$WORKLOAD" | base64 -w0)"
-echo "workload: hyper-protect-basic.${ENCRYPTED_PASSWORD}.${ENCRYPTED_WORKLOAD}" > grep11.yml
+echo "workload: contract-basic.${ENCRYPTED_PASSWORD}.${ENCRYPTED_WORKLOAD}" > grep11.yml
 
 PASSWORD=`openssl rand -base64 32`
 #ENCRYPTED_PASSWORD="$(echo -n "$PASSWORD" | base64 -d | openssl rsautl -encrypt -inkey $CONTRACT_KEY -certin | base64 -w0 )"
 ENCRYPTED_PASSWORD="$(echo -n "$PASSWORD" | base64 -d | openssl pkeyutl -encrypt -pubin -inkey <(openssl x509 -in $CONTRACT_KEY -pubkey -noout) |  base64 -w0)"
 ENCRYPTED_ENV="$(echo -n "$PASSWORD" | base64 -d | openssl enc -aes-256-cbc -pbkdf2 -pass stdin -in "$ENV" | base64 -w0)"
-echo "env: hyper-protect-basic.${ENCRYPTED_PASSWORD}.${ENCRYPTED_ENV}" >> grep11.yml
+echo "env: contract-basic.${ENCRYPTED_PASSWORD}.${ENCRYPTED_ENV}" >> grep11.yml
  
 rm $CONTRACT_KEY
 
