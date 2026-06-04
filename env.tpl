@@ -9,34 +9,14 @@ crypto-pt:
   lock: false
   index-1:
     type: secret
-    domain-id: "$HSMDOMAIN1.1"
+    domain-id: "$HSMDOMAIN1"
     secret: $SECRET1_B24
-    mkvp: $MKVP1
+    mkvp: $MKVP
   index-2:
     type: secret
-    domain-id: "$HSMDOMAIN2.1"
+    domain-id: "$HSMDOMAIN2"
     secret: $SECRET1_B24
-    mkvp: $MKVP1
-  index-3:
-    type: secret
-    domain-id: "$HSMDOMAIN1.2"
-    secret: $SECRET2_B24
-    mkvp: $MKVP2
-  index-4:
-    type: secret
-    domain-id: "$HSMDOMAIN2.2"
-    secret: $SECRET2_B24
-    mkvp: $MKVP2
-  index-5:
-    type: secret3
-    domain-id: "$HSMDOMAIN1.3"
-    secret: $SECRET3_B24
-    mkvp: $MKVP3
-  index-6:
-    type: secret
-    domain-id: "$HSMDOMAIN2.3"
-    secret: $SECRET3_B24
-    mkvp: $MKVP3
+    mkvp: $MKVP
 auths:
   "$REGISTRY_URL":
     password: "$REGISTRY_PASSWORD"
