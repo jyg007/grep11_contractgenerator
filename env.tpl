@@ -10,12 +10,12 @@ crypto-pt:
   index-1:
     type: secret
     domain-id: "$HSMDOMAIN1"
-    secret: $SECRET1_B24
+    secret: $SECRET_B24
     mkvp: $MKVP
   index-2:
     type: secret
     domain-id: "$HSMDOMAIN2"
-    secret: $SECRET1_B24
+    secret: $SECRET_B24
     mkvp: $MKVP
 auths:
   "$REGISTRY_URL":
